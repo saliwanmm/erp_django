@@ -31,3 +31,40 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
     }
+
+
+    
+.profile-card {
+  background: #ffffff;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+  background-color: #f8f9fa;
+}
+
+.profile-info p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .profile-card {
+    padding: 1.5rem;
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+}

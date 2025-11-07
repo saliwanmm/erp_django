@@ -1,0 +1,31 @@
+{% extends "erp_project/base.html" %}
+
+{% block title %}
+ERP profile
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center">
+  <div class="card profile-card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%;">
+    <div class="text-center">
+      {% comment %} <img src="{% static 'images/avatar.png' %}" alt="Profile photo" class="profile-img mb-3"> {% endcomment %}
+      <h2 class="fw-bold mb-1">{{ user.username|title }}</h2>
+      <p class="text-muted mb-3">{{ user.email }}</p>
+      <span class="badge bg-primary text-uppercase px-3 py-2">{{ user.role }}</span>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="profile-info">
+      {% comment %} <p><strong>First name:</strong> {{ user.first_name }}</p> {% endcomment %}
+      {% comment %} <p><strong>Last name:</strong> {{ user.last_name }}</p> {% endcomment %}
+      <p><strong>Date joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'accounts' %}" class="btn btn-outline-secondary me-2">Back</a>
+      <a href="{% url 'user_edit_html' user.id %}" class="btn btn-primary">Edit Profile</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

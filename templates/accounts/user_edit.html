@@ -1,0 +1,29 @@
+{% extends "erp_project/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit User: {{ user.username }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" value="{{ user.email }}">
+        </div>
+
+        {% if request.user.role == "admin" %}
+        <div class="mb-3">
+            <label>Role</label>
+            <select name="role" class="form-select">
+                <option value="employee" {% if user.role == "employee" %}selected{% endif %}>Employee</option>
+                <option value="manager" {% if user.role == "manager" %}selected{% endif %}>Manager</option>
+                <option value="admin" {% if user.role == "admin" %}selected{% endif %}>Admin</option>
+            </select>
+        </div>
+        {% endif %}
+
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'user_list_html' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
