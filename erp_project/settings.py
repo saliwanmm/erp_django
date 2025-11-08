@@ -25,6 +25,8 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     #Custom apps
     "accounts",
+    "inventory",
+    "sales",
     #Django apps
     "django.contrib.admin",
     "django.contrib.auth",

@@ -19,9 +19,10 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               {% if request.user.is_authenticated and request.user.role in "admin manager" %}
-                <a class="nav-link active" aria-current="page" href="{% url 'user_list_html' %}">Users list</a>
-                <!-- <a class="nav-link" href="#">Pricing</a>
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                <a class="nav-link active" aria-current="page" href="{% url 'user_list_html' %}">Users</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'products_html' %}">Products</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'categories_html' %}">Categories</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'warehouses_html' %}">Warehouses</a>
               {% endif %}
               {% if request.user.is_authenticated %}
               <a class="nav-link active" aria-current="page" href="{% url 'profile_html' pk=request.user.id %}">Profile</a>

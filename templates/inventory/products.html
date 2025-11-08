@@ -1,0 +1,59 @@
+{% extends "erp_project/base.html" %}
+
+{% block title %}
+ERP Products
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Products List</h2>
+
+    <table class="table table-striped table-hover table-bordered shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Warehouse</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                {% if request.user.role == "admin" %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category.name }}</td>
+                <td>{{ product.warehouse.name }}</td>
+                <td class="text-center">{{ product.quantity }}</td>
+                <td>${{ product.price }}</td>
+
+                {% if request.user.role == "admin" %}
+                <td class="text-center">
+                    <a href="{% url 'product_edit_html' product.id %}" class="btn btn-sm btn-primary me-2">Edit</a>
+                    <form action="{% url 'product_delete' product.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Are you sure you want to delete this product?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center text-muted">No products found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if request.user.role == "admin" %}
+    <a class="btn btn-primary" href="{% url 'product_create' %}">Add New Product</a>
+    {% endif %}
+</div>
+{% endblock %}

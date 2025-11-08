@@ -1,0 +1,22 @@
+{% extends "erp_project/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Warehouse: {{ warehouse.name }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" value="{{ warehouse.name }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="location" class="form-control" value="{{ warehouse.location }}">
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'warehouses_html' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "erp_project/base.html" %}
+
+{% block title %}
+ERP Warehouses
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Warehouse List</h2>
+
+    <table class="table table-striped table-hover table-bordered shadow-sm">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Location</th>
+                {% if request.user.role == "admin" %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for warehouse in warehouses %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ warehouse.name }}</td>
+                <td>{{ warehouse.location }}</td>
+
+                {% if request.user.role == "admin" %}
+                <td class="text-center">
+                    <a href="{% url 'warehouse_edit_html' warehouse.id %}" class="btn btn-sm btn-primary me-2">Edit</a>
+                    <form action="{% url 'warehouse_delete' warehouse.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Are you sure you want to delete this category?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center text-muted">No categories found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if request.user.role == "admin" %}
+    <a class="btn btn-primary" href="{% url 'warehouse_create' %}">Add New Warehouse</a>
+    {% endif %}
+
+</div>
+{% endblock %}

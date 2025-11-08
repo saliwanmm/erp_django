@@ -1,0 +1,22 @@
+{% extends "erp_project/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Category: {{ category.name }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" value="{{ category.name }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <input type="text" name="description" class="form-control" value="{{ category.description }}">
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'categories_html' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -66,7 +66,7 @@ class LogoutAPIView(APIView):
                     status=status.HTTP_400_BAD_REQUEST
                 )
             
-        logout(request)  # Вихід із Django-сесії
+        logout(request)
 
         return Response(
             {"detail": "Successfully logged out."},

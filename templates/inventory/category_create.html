@@ -1,0 +1,40 @@
+{% extends "erp_project/base.html" %}
+
+{% block title %}Add Category{% endblock %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="width: 500px; border-radius: 1rem;">
+        <h3 class="text-center mb-4">Add New Category</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Category Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="form-control" 
+                    placeholder="Enter category name" 
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    class="form-control" 
+                    rows="4" 
+                    placeholder="Enter short description"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'categories_html' %}" class="btn btn-secondary px-4">Back</a>
+                <button type="submit" class="btn btn-primary px-4">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

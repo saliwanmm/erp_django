@@ -10,5 +10,6 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
-    path("api/accounts/", include("accounts.urls"))
+    path("api/accounts/", include("accounts.urls")),
+    path("api/inventory/", include("inventory.urls"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
